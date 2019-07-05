@@ -1070,7 +1070,7 @@ function renderUsingWebAudioControls(parent, ui) {
 
         parent.append(groupdiv);
 
-        parse(groupdiv, group.items);
+        renderUsingWebAudioControls(groupdiv, group.items);
         break;
       case "hgroup":
         group = ui[i];
@@ -1080,7 +1080,7 @@ function renderUsingWebAudioControls(parent, ui) {
 
         parent.append(groupdiv);
 
-        parse(groupdiv, group.items);
+        renderUsingWebAudioControls(groupdiv, group.items);
         break;
       case "hslider":
         slider = ui[i];

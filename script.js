@@ -14,8 +14,10 @@ function init() {
   //var res = Layout.calcLayout(pitchShifterUI);
   //var res = Layout.calcLayout(flangerUI);
   //var res = Layout.calcLayout(compressorUI);
-  var res = Layout.calcLayout(phaserUI);
+  //var res = Layout.calcLayout(phaserUI);
   //var res = Layout.calcLayout(blipperUI);
+  var res = Layout.calcLayout(looperUI);
+
   console.dir(res);
   // calcul du scale factor
   scaleFactorY = realHeight / res.layout.height;
@@ -23,6 +25,131 @@ function init() {
 
   renderUsingWebAudioControls(wapdiv, res.ui);
 }
+
+var looperUI = [
+  {
+    type: "vgroup",
+    label: "Stream Looper",
+    items: [
+      {
+        type: "hgroup",
+        label: "0x00",
+        meta: [{ "0": "" }],
+        items: [
+          {
+            type: "vgroup",
+            label: "Playback",
+            items: [
+              {
+                type: "hbargraph",
+                label: "Position",
+                address: "/Stream_Looper/0x00/Playback/Position",
+                index: "131156",
+                meta: [{ "0": "" }],
+                min: "0",
+                max: "32768"
+              },
+              {
+                type: "hgroup",
+                label: "0x00",
+                meta: [{ "1": "" }],
+                items: [
+                  {
+                    type: "vslider",
+                    label: "Period",
+                    address: "/Stream_Looper/0x00/Playback/0x00/Period",
+                    index: "131128",
+                    meta: [{ midi: "ctrl 00" }],
+                    init: "32768",
+                    min: "1",
+                    max: "32768",
+                    step: "1"
+                  },
+                  {
+                    type: "vslider",
+                    label: "Start",
+                    address: "/Stream_Looper/0x00/Playback/0x00/Start",
+                    index: "131144",
+                    meta: [{ midi: "ctrl 01" }],
+                    init: "1",
+                    min: "1",
+                    max: "32768",
+                    step: "1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            type: "vgroup",
+            label: "Recording",
+            items: [
+              {
+                type: "hbargraph",
+                label: "Position",
+                address: "/Stream_Looper/0x00/Recording/Position",
+                index: "131124",
+                meta: [{ "0": "" }],
+                min: "0",
+                max: "32768"
+              },
+              {
+                type: "hgroup",
+                label: "0x00",
+                meta: [{ "1": "" }],
+                items: [
+                  {
+                    type: "vslider",
+                    label: "Period",
+                    address: "/Stream_Looper/0x00/Recording/0x00/Period",
+                    index: "131100",
+                    meta: [{ midi: "ctrl 02" }],
+                    init: "32768",
+                    min: "1",
+                    max: "32768",
+                    step: "1"
+                  },
+                  {
+                    type: "vslider",
+                    label: "Start",
+                    address: "/Stream_Looper/0x00/Recording/0x00/Start",
+                    index: "131112",
+                    meta: [{ midi: "ctrl 03" }],
+                    init: "1",
+                    min: "1",
+                    max: "32768",
+                    step: "1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        type: "checkbox",
+        label: "Pause Recording",
+        address: "/Stream_Looper/Pause_Recording",
+        index: "131088",
+        meta: [{ "1": "" }, { midi: "ctrl 04" }]
+      },
+      {
+        type: "checkbox",
+        label: "Bypass",
+        address: "/Stream_Looper/Bypass",
+        index: "0",
+        meta: [{ "2": "" }, { midi: "ctrl 05" }]
+      },
+      {
+        type: "checkbox",
+        label: "Limit to Rec Period",
+        address: "/Stream_Looper/Limit_to_Rec_Period",
+        index: "131132",
+        meta: [{ "3": "" }, { midi: "ctrl 06" }]
+      }
+    ]
+  }
+];
 var blipperUI = [
   {
     type: "vgroup",
